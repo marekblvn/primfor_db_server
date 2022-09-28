@@ -1,19 +1,26 @@
 const {
     addMatch,
     getMatch,
+    loadMatch,
 } = require("./dao")
 const Error = require("./error/error");
 const axios = require("axios").default;
 
 const getMatchDataAbl = async (req, res) => {
+    const championsQuery = req.query.champions;
+    console.log(championsQuery)
     let dtoOut;
     try {
-        dtoOut = await getMatch([]);
+        dtoOut = await getMatch(championsQuery.split(","));
     } catch (e) {
         throw new Error.Get.GetDaoFailed(e);
     }
     res.send(dtoOut);
 };
+
+const loadMatchDataAbl = async (req, res) => {
+
+}
 
 const storeMatchDataAbl = async (req, res) => {
     //const matchId = 3219987255;
@@ -39,4 +46,5 @@ const storeMatchDataAbl = async (req, res) => {
 module.exports = {
     getMatchDataAbl,
     storeMatchDataAbl,
+    loadMatchDataAbl,
 };

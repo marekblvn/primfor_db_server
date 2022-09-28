@@ -6,7 +6,9 @@ const getMatch = (championNames) => championNames.length ? MatchModel.find({
             championNames.map((name) => ({$elemMatch: {championName: name}}))
     }
 }) : MatchModel.find();
+const loadMatch = (id) => MatchModel.findById(id);
 module.exports = {
     addMatch,
     getMatch,
+    loadMatch,
 }

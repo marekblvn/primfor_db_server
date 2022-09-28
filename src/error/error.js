@@ -37,7 +37,21 @@ const Get = {
     }
 }
 
+const Load = {
+    CODE: `${ERROR_PREFIX}load/`,
+    LoadDaoFailed: class extends ApplicationError {
+        constructor(error) {
+            const code = `${Load.CODE}loadDaoFailed`;
+            const message = "Load DAO Failed";
+            const status = 507;
+            super(code, message, status);
+            this.error = error;
+        }
+    }
+}
+
 module.exports = {
     Store,
     Get,
+    Load,
 };
